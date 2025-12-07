@@ -1,0 +1,194 @@
+### Employee Salary Record
+Employee ID: 101
+Name: Ananya Gupta
+Department: Finance
+Position: Senior Accountant
+Salary: 75000.00
+
+### Employee Salary Record
+Employee ID: 102
+Name: Rohan Mehta
+Department: IT
+Position: Software Engineer
+Salary: 85000.00
+
+### Employee Salary Record
+Employee ID: 103
+Name: Priya Sharma
+Department: HR
+Position: HR Manager
+Salary: 90000.00
+
+### Employee Salary Record
+Employee ID: 104
+Name: Arjun Verma
+Department: Sales
+Position: Sales Executive
+Salary: 55000.00
+
+### Employee Salary Record
+Employee ID: 105
+Name: Neha Kapoor
+Department: Marketing
+Position: Marketing Specialist
+Salary: 65000.00
+
+### SQL Query
+List employees with salary greater than 80000  
+SQL: SELECT first_name, last_name, salary FROM Employee WHERE salary > 80000;
+
+### SQL Query
+Find average salary in each department  
+SQL: SELECT d.name, AVG(e.salary)  
+     FROM Employee e  
+     JOIN Department d ON e.department_id = d.department_id  
+     GROUP BY d.name;
+
+### SQL Query
+Highest paid employee in the company  
+SQL: SELECT first_name, last_name, salary  
+     FROM Employee  
+     ORDER BY salary DESC  
+     FETCH FIRST 1 ROWS ONLY;
+
+### SQL Query
+Lowest paid employee in IT department  
+SQL: SELECT first_name, last_name, salary  
+     FROM Employee  
+     WHERE department_id = (SELECT department_id FROM Department WHERE name = 'IT')  
+     ORDER BY salary ASC  
+     FETCH FIRST 1 ROWS ONLY;
+
+### Department Record
+Department ID: 1
+Name: Finance
+Description: Handles budgeting, payroll, and financial reporting. Key roles include Accountants and Financial Analysts.
+
+### Department Record
+Department ID: 2
+Name: IT
+Description: Responsible for software development, system maintenance, and technical support. Key roles include Software Engineers and System Administrators.
+
+### Department Record
+Department ID: 3
+Name: Human Resources
+Description: Manages recruitment, employee relations, and compliance. Key roles include HR Managers and Recruiters.
+
+### Department Record
+Department ID: 4
+Name: Sales
+Description: Focuses on client acquisition, revenue generation, and customer relationship management. Key roles include Sales Executives and Account Managers.
+
+### Department Record
+Department ID: 5
+Name: Marketing
+Description: Oversees branding, advertising, and market research. Key roles include Marketing Specialists and Campaign Managers.
+
+### Position Record
+Position ID: 101
+Title: Senior Accountant
+Description: Manages financial statements, audits, and compliance reporting.
+
+### Position Record
+Position ID: 102
+Title: Software Engineer
+Description: Develops and maintains applications, writes code, and troubleshoots technical issues.
+
+### Position Record
+Position ID: 103
+Title: HR Manager
+Description: Oversees recruitment, employee engagement, and policy enforcement.
+
+### Position Record
+Position ID: 104
+Title: Sales Executive
+Description: Identifies new clients, manages sales pipelines, and closes deals.
+
+### Position Record
+Position ID: 105
+Title: Marketing Specialist
+Description: Designs campaigns, analyzes market trends, and coordinates promotional activities.
+
+### SQL Query
+List all departments  
+SQL: SELECT * FROM Department;
+
+### SQL Query
+List all positions  
+SQL: SELECT * FROM Position;
+
+### SQL Query
+Find employees by department name  
+SQL: SELECT e.first_name, e.last_name, d.name  
+     FROM Employee e  
+     JOIN Department d ON e.department_id = d.department_id  
+     WHERE d.name = 'Finance';
+
+### SQL Query
+Find employees by position title  
+SQL: SELECT e.first_name, e.last_name, p.title  
+     FROM Employee e  
+     JOIN Position p ON e.position_id = p.position_id  
+     WHERE p.title = 'Software Engineer';
+
+
+
+### FAQ
+Q: Who is the highest paid employee in IT department?  
+A: SELECT first_name, last_name, salary FROM Employee  
+   WHERE department_id = (SELECT department_id FROM Department WHERE name = 'IT')  
+   ORDER BY salary DESC FETCH FIRST 1 ROWS ONLY;
+
+### FAQ
+Q: Which department has the highest average salary?  
+A: SELECT d.name, AVG(e.salary) FROM Employee e  
+   JOIN Department d ON e.department_id = d.department_id  
+   GROUP BY d.name ORDER BY AVG(e.salary) DESC FETCH FIRST 1 ROWS ONLY;
+
+### FAQ
+Q: How can I find all employees working as Software Engineers with salary above 80000?  
+A: SELECT e.first_name, e.last_name, e.salary FROM Employee e  
+   JOIN Position p ON e.position_id = p.position_id  
+   WHERE p.title = 'Software Engineer' AND e.salary > 80000;
+
+### FAQ
+Q: Which position has the lowest average salary in the company?  
+A: SELECT p.title, AVG(e.salary) FROM Employee e  
+   JOIN Position p ON e.position_id = p.position_id  
+   GROUP BY p.title ORDER BY AVG(e.salary) ASC FETCH FIRST 1 ROWS ONLY;
+
+### FAQ
+Q: How do I list employees in Finance department earning less than 60000?  
+A: SELECT e.first_name, e.last_name, e.salary FROM Employee e  
+   JOIN Department d ON e.department_id = d.department_id  
+   WHERE d.name = 'Finance' AND e.salary < 60000;
+
+### FAQ
+Q: Can I see the top 3 highest paid employees across all departments?  
+A: SELECT first_name, last_name, salary FROM Employee  
+   ORDER BY salary DESC FETCH FIRST 3 ROWS ONLY;
+
+### FAQ
+Q: How do I check the number of employees in each department?  
+A: SELECT d.name, COUNT(e.employee_id) FROM Employee e  
+   JOIN Department d ON e.department_id = d.department_id  
+   GROUP BY d.name;
+
+### FAQ
+Q: How can I find the average salary for Managers?  
+A: SELECT AVG(e.salary) FROM Employee e  
+   JOIN Position p ON e.position_id = p.position_id  
+   WHERE p.title LIKE '%Manager%';
+
+### FAQ
+Q: Which department has the most employees earning above 70000?  
+A: SELECT d.name, COUNT(e.employee_id) FROM Employee e  
+   JOIN Department d ON e.department_id = d.department_id  
+   WHERE e.salary > 70000 GROUP BY d.name ORDER BY COUNT(e.employee_id) DESC;
+
+### FAQ
+Q: How do I update the salary of a Sales Executive?  
+A: UPDATE Employee SET salary = new_value  
+   WHERE position_id = (SELECT position_id FROM Position WHERE title = 'Sales Executive')  
+   AND employee_id = your_id;
+
