@@ -83,17 +83,16 @@ Access at: **http://localhost:8501**
 
 ---
 
-## 📊 Project Files
+## 📂 Project Files
 
-| File | Purpose |
-|------|---------|
-| pp.py | Main Streamlit app |
-| db.py | Oracle database connection |
-| openai.py | AI & intent classification |
-| ag_engine.py | Vector search (FAISS) |
-| isualizer.py | Chart generation |
-| oracle_chatbot_knowledge.txt | Knowledge base |
-| equirements.txt | Dependencies |
+- **app.py** - Main Streamlit application
+- **db.py** - Oracle database connection
+- **openai.py** - AI & intent classification
+- **rag_engine.py** - Vector search (FAISS)
+- **visualizer.py** - Chart generation
+- **oracle_chatbot_knowledge.txt** - Knowledge base
+- **requirements.txt** - Dependencies
+- **.env** - API keys (not committed)
 
 ---
 
