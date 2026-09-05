@@ -160,19 +160,18 @@ Bot: [Aggregation query] → [Results] → [Line chart] → [Summary]
 
 ## 📊 Project Structure
 
-`
-oracle-nl-sql-chatbot/
-├── app.py                         # Main Streamlit application
-├── db.py                          # Oracle database connection & queries
-├── openai.py                      # OpenAI integration & intent classification
-├── rag_engine.py                  # FAISS RAG implementation
-├── visualizer.py                  # Chart generation with Plotly
-├── oracle_chatbot_knowledge.txt   # Knowledge base for RAG
-├── requirements.txt               # Python dependencies
-├── .env                           # Environment variables (not committed)
-├── chatbot_debug.log              # Debug log (auto-created)
-└── README.md                      # This file
-`
+| File | Purpose |
+|------|---------|
+| pp.py | Main Streamlit application |
+| db.py | Oracle database connection & queries |
+| openai.py | OpenAI integration & intent classification |
+| ag_engine.py | FAISS RAG implementation |
+| isualizer.py | Chart generation with Plotly |
+| oracle_chatbot_knowledge.txt | Knowledge base for RAG |
+| equirements.txt | Python dependencies |
+| .env | Environment variables (not committed) |
+| chatbot_debug.log | Debug log (auto-created) |
+| README.md | This file |
 
 ### Key Components
 
