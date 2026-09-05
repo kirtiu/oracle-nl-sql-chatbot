@@ -30,56 +30,68 @@ Convert natural language to Oracle SQL. Ask questions, get data visualizations.
 
 ## ⚙️ Installation
 
-1. **Clone**
-   `ash
-   git clone https://github.com/kirtiu/oracle-nl-sql-chatbot.git
-   cd oracle-nl-sql-chatbot
-   `
+### 1. Clone Repository
 
-2. **Virtual Environment**
-   `ash
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   `
+\\\ash
+git clone https://github.com/kirtiu/oracle-nl-sql-chatbot.git
+cd oracle-nl-sql-chatbot
+\\\
 
-3. **Install Dependencies**
-   `ash
-   pip install -r requirements.txt
-   `
+### 2. Virtual Environment
 
-4. **Setup .env**
-   `env
-   OPENAI_API_KEY=sk-your-key
-   ORACLE_USER=your_user
-   ORACLE_PASSWORD=your_password
-   ORACLE_HOST=your_host
-   ORACLE_PORT=1521
-   ORACLE_SID=your_sid
-   `
+\\\ash
+python -m venv venv
+source venv/bin/activate
+\\\
 
-5. **Run**
-   `ash
-   streamlit run app.py
-   `
+On Windows:
+\\\ash
+venv\Scripts\activate
+\\\
 
-Access at: **http://localhost:8501**
+### 3. Install Dependencies
+
+\\\ash
+pip install -r requirements.txt
+\\\
+
+### 4. Setup .env File
+
+Create .env file:
+
+\\\env
+OPENAI_API_KEY=sk-your-key-here
+ORACLE_USER=your_username
+ORACLE_PASSWORD=your_password
+ORACLE_HOST=your_host
+ORACLE_PORT=1521
+ORACLE_SID=your_sid
+\\\
+
+### 5. Run Application
+
+\\\ash
+streamlit run app.py
+\\\
+
+Open: **http://localhost:8501**
 
 ---
 
 ## 🎯 How to Use
 
 ### Ask Questions
-`
-"How many employees in Sales?"
-"Show salary by department"
-"Compare expenses by quarter"
-`
 
-### Result
-- SQL query displayed
-- Data table shown
-- Auto-generated chart
-- AI explanation provided
+- "How many employees in Sales?"
+- "Show salary by department"
+- "Compare expenses by quarter"
+
+### Get Results
+
+1. SQL query displayed
+2. Data table shown
+3. Auto-generated chart
+4. AI explanation provided
 
 ---
 
@@ -115,32 +127,35 @@ Access at: **http://localhost:8501**
 
 ## 📊 Visualizations
 
-**Auto-selects best chart:**
-- Bar chart → Default for most queries
-- Pie chart → When "pie" mentioned
-- Line chart → When "line" mentioned
+Auto-selects best chart:
+- **Bar chart** → Default for most queries
+- **Pie chart** → When "pie" mentioned
+- **Line chart** → When "line" mentioned
 
 ---
 
 ## 🛠️ Configuration
 
 **OpenAI Settings** (openai.py)
-`python
+
+\\\python
 model = "gpt-4o"
 temperature = 0
 max_tokens = 2048
-`
+\\\
 
 **RAG Settings** (rag_engine.py)
-`python
+
+\\\python
 chunk_size = 500
 chunk_overlap = 50
-`
+\\\
 
 **Security** (app.py)
-`python
+
+\\\python
 blocked_keywords = ["insert", "update", "delete", "drop", "create", "alter"]
-`
+\\\
 
 ---
 
@@ -159,8 +174,8 @@ blocked_keywords = ["insert", "update", "delete", "drop", "create", "alter"]
 |-------|----------|
 | Invalid API Key | Check OpenAI credentials |
 | DB connection failed | Verify Oracle host/port |
-| "Unsafe code" error | Query blocked (INSERT/UPDATE/DELETE not allowed) |
-| No results | Simplify question or check table names |
+| Unsafe code error | Query blocked (INSERT/UPDATE/DELETE) |
+| No results | Simplify question or check tables |
 
 ---
 
