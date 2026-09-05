@@ -1,4 +1,4 @@
-﻿# 🗄️ Oracle NL-SQL Chatbot
+# 🗄️ Oracle NL-SQL Chatbot
 
 Convert natural language to Oracle SQL. Ask questions, get data visualizations.
 
@@ -32,47 +32,48 @@ Convert natural language to Oracle SQL. Ask questions, get data visualizations.
 
 ### 1. Clone Repository
 
-\\\ash
+```bash
 git clone https://github.com/kirtiu/oracle-nl-sql-chatbot.git
 cd oracle-nl-sql-chatbot
-\\\
+```
 
 ### 2. Virtual Environment
 
-\\\ash
+```bash
 python -m venv venv
 source venv/bin/activate
-\\\
+```
 
 On Windows:
-\\\ash
+
+```bash
 venv\Scripts\activate
-\\\
+```
 
 ### 3. Install Dependencies
 
-\\\ash
+```bash
 pip install -r requirements.txt
-\\\
+```
 
 ### 4. Setup .env File
 
-Create .env file:
+Create `.env` file:
 
-\\\env
+```env
 OPENAI_API_KEY=sk-your-key-here
 ORACLE_USER=your_username
 ORACLE_PASSWORD=your_password
 ORACLE_HOST=your_host
 ORACLE_PORT=1521
 ORACLE_SID=your_sid
-\\\
+```
 
 ### 5. Run Application
 
-\\\ash
+```bash
 streamlit run app.py
-\\\
+```
 
 Open: **http://localhost:8501**
 
@@ -138,24 +139,24 @@ Auto-selects best chart:
 
 **OpenAI Settings** (openai.py)
 
-\\\python
+```python
 model = "gpt-4o"
 temperature = 0
 max_tokens = 2048
-\\\
+```
 
 **RAG Settings** (rag_engine.py)
 
-\\\python
+```python
 chunk_size = 500
 chunk_overlap = 50
-\\\
+```
 
 **Security** (app.py)
 
-\\\python
+```python
 blocked_keywords = ["insert", "update", "delete", "drop", "create", "alter"]
-\\\
+```
 
 ---
 
