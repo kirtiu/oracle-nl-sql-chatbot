@@ -140,32 +140,21 @@ Bot: [SQL with GROUP BY] → [Data table] → [Pie chart] → [Interpretation]
 
 User: "Compare average salaries across departments"
 Bot: [Aggregation query] → [Results] → [Line chart] → [Summary]
-
-User: "hello"
-Bot: "👋 Hi there! Nice to hear from you. Please ask a valid database-related question."
-
-User: "What is SQL?"
-Bot: "Please enter a valid database-related question."
 `
 
 ### Question Types
 
 ✅ **Valid Questions:**
-`
-"How many employees are in the Sales department?"
-"Show me the top 5 highest-paid employees"
-"What is the average salary by department?"
-"List all products with sales over "
-"Show me the distribution of employees by location"
-`
+- "How many employees are in the Sales department?"
+- "Show me the top 5 highest-paid employees"
+- "What is the average salary by department?"
+- "List all products with sales over "
 
 ❌ **Blocked Operations:**
-`
-"DELETE all employees" → Blocked (modification)
-"INSERT new employee" → Blocked (modification)
-"UPDATE salary values" → Blocked (modification)
-"CREATE new table" → Blocked (modification)
-`
+- "DELETE all employees" → Blocked (modification)
+- "INSERT new employee" → Blocked (modification)
+- "UPDATE salary values" → Blocked (modification)
+- "CREATE new table" → Blocked (modification)
 
 ---
 
@@ -184,6 +173,36 @@ oracle-nl-sql-chatbot/
 ├── chatbot_debug.log              # Debug log (auto-created)
 └── README.md                      # This file
 `
+
+### Key Components
+
+**app.py** - Main Streamlit Application
+- User input handling
+- Intent classification workflow
+- SQL execution and result processing
+- Chart visualization
+- AI explanations
+
+**db.py** - Database Layer
+- Oracle connection management
+- Query execution with error handling
+- Result formatting to pandas DataFrame
+
+**openai.py** - AI Integration
+- Intent classification (greeting/sql_query/question/irrelevant)
+- SQL query generation from natural language
+- Result explanation generation
+- RAG context retrieval
+
+**rag_engine.py** - Vector Search
+- FAISS index building
+- Chunk embedding
+- Semantic search for context
+
+**visualizer.py** - Chart Generation
+- Plotly chart creation
+- Automatic chart type selection
+- Result visualization
 
 ---
 
@@ -212,6 +231,58 @@ Unvalidated SQL generation can accidentally:
 ✅ Aggregation         # GROUP BY, SUM, AVG, COUNT
 ✅ Filtering           # WHERE conditions
 ✅ Sorting             # ORDER BY
+`
+
+---
+
+## 📊 Visualization
+
+The app intelligently chooses the best chart based on your question:
+
+**Bar Charts** (Default)
+- "Show revenue by product" → Bar chart with products on X-axis
+
+**Pie Charts** (When "pie" mentioned)
+- "Show a pie chart of sales by region" → Proportional breakdown
+
+**Line Charts** (When "line" mentioned)
+- "Show a line chart of monthly sales" → Trends over time
+
+---
+
+## 🤖 How It Works
+
+### Step-by-Step Pipeline
+
+1. **User Asks Question** - Natural language input captured
+2. **Intent Classification** - LLM classifies: greeting | sql_query | question | irrelevant
+3. **SQL Generation** - Retrieve RAG context, generate Oracle SQL
+4. **Safety Validation** - Check for dangerous operations
+5. **Database Execution** - Execute SQL, fetch results as DataFrame
+6. **Visualization** - Auto-generate appropriate chart type
+7. **Explanation** - Send DataFrame to GPT for business-friendly explanation
+
+---
+
+## 🛠️ Configuration
+
+### OpenAI Model Settings (openai.py)
+`python
+model="gpt-4o"           # Change model here
+temperature=0            # 0 = deterministic, 1 = creative
+max_tokens=2048          # Limit response length
+`
+
+### RAG Configuration (rag_engine.py)
+`python
+chunk_size = 500         # Size of text chunks
+chunk_overlap = 50       # Overlap between chunks
+embedding_model = "text-embedding-3-small"
+`
+
+### Safety Validation (app.py)
+`python
+blocked_keywords = ["insert", "update", "delete", "drop", "create", "alter"]
 `
 
 ---
